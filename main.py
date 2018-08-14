@@ -7,12 +7,13 @@ import pandas as pd
 import numpy as np
 import csv
 from pdf_gen import generate_pdf
+from scoring import AqolScore
 
 
 
 win = Tk()
 
-win.geometry('600x350')
+win.geometry('600x700')
 #win.configure(bg='#334353')
 
 gui_style = ttk.Style()
@@ -54,24 +55,26 @@ for text, value in Q1list:
     b.grid(sticky='W', rowspan=5, columnspan=2)
 
 
+Q2list = [
+        ("getting around is enjoyable and easy", 1),
+        ("I have no difficulty getting around outside my place of residence", 2),
+        ("I have a little difficulty", 3),
+        ("I have moderate difficulty", 4),
+        ("I have a lot of difficulty", 5),
+        ("I cannot get around unless somebody is there to help me.", 6)
+    ]
+Label(win, text="Q2. How easy or difficult is it for you to get around by yourself outside your place of residence (eg to go shopping, visiting)?", justify = LEFT, wraplength=500 ).grid(rowspan=2, columnspan=2)
+q2 = IntVar()
+for text, value in Q2list:
+    b = Radiobutton(win, text=text, variable=q2, value=value)
+    b.grid(sticky='W', rowspan=6, columnspan=2)
+
+
 
 
 def print_button():
-    Q1 = q1.get()
-    # Q1. Household Help
-    if Q1 == 1:
-        dvQ1 = 0
-    elif Q1 == 2:
-        dvQ1 = 0.073
-    elif Q1 == 3:
-        dvQ1 = 0.435
-    elif Q1 == 4:
-        dvQ1 = 0.820
-    elif Q1 == 5:
-        dvQ1 = 1
-    else:
-        dvQ1 = np.NaN
-    print(dvQ1)
+    s = AqolScore(dvQ1, dvQ2)
+    s.printscore()
 
 btn2 = Button(win, text="Print Value", command=print_button).grid(row=99, column=1)
 
