@@ -1,47 +1,39 @@
 import numpy as np
 from tkinter import *
+from main import *
 
-class AqolScore():
-    def __init__(self, dvQ1, dvQ2):
-        self.dvQ1 = dvQ1
-        self.dvQ2 = dvQ2
+Q1 = q1.get()
+# Q1. Household Help
+if Q1 == 1:
+    dvQ1 = 0
+elif Q1 == 2:
+    dvQ1 = 0.073
+elif Q1 == 3:
+    dvQ1 = 0.435
+elif Q1 == 4:
+    dvQ1 = 0.820
+elif Q1 == 5:
+    dvQ1 = 1
+else:
+    dvQ1 = np.NaN
 
-    def question1(self):
-        Q1 = q1.get()
-        # Q1. Household Help
-        if Q1 == 1:
-            self.dvQ1 = 0
-        elif Q1 == 2:
-            self.dvQ1 = 0.073
-        elif Q1 == 3:
-            self.dvQ1 = 0.435
-        elif Q1 == 4:
-            self.dvQ1 = 0.820
-        elif Q1 == 5:
-            self.dvQ1 = 1
-        else:
-            self.dvQ1 = np.NaN
+    #Q2. Getting Around Outside
+Q2 = q2.get()
+if Q2 == 1:
+    dvQ2 = 0
+elif Q2 == 2:
+    dvQ2 = 0.033
+elif Q2 == 3:
+    dvQ2 = 0.240
+elif Q2 == 4:
+    dvQ2 = 0.471
+elif Q2 == 5:
+    dvQ2 = 840
+elif Q2 == 6:
+    dvQ2 = 1
+else:
+    dvQ2 = np.NaN
 
-    def question2(self):
-        #Q2. Getting Around Outside
-        Q2 = q2.get()
-        if Q2 == 1:
-            self.dvQ2 = 0
-        elif Q2 == 2:
-            self.dvQ2 = 0.033
-        elif Q2 == 3:
-            self.dvQ2 = 0.240
-        elif Q2 == 4:
-            self.dvQ2 = 0.471
-        elif Q2 == 5:
-            self.dvQ2 = 840
-        elif Q2 == 6:
-            self.dvQ2 = 1
-        else:
-            self.dvQ2 = np.NaN
-
-    def printscore(self):
-        print("The score was " + self.dvQ1 + " and" + self.dvQ2)
 
 '''
     ** *3.
